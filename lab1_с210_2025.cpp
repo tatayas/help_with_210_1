@@ -50,6 +50,7 @@ int main()
 	ls1.AddToTail(Rect(4, 6, 8, 10, Shape::GREEN));
 	ls1.AddToTail(Circle(2, 2, 2, Shape::WHITE));
 	ls1.AddToTail(Rect(3, 5, 6, 7, Shape::GREEN));
+	// just for PULL REQUEST
 	cout << ls1 << sep;								//выводим список	
 	stop
 
