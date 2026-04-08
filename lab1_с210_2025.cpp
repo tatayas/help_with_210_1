@@ -43,7 +43,7 @@ int main()
 	// 	
 #if 1
 	List ls1;
-	
+
 	ls1.AddToTail(Circle(1, 1, 1, Shape::WHITE));	//добавляем элементы в список
 	ls1.AddToTail(Circle(5, 5, 5, Shape::RED));
 	ls1.AddToTail(Rect(2, 3, 4, 5, Shape::RED));
@@ -64,7 +64,7 @@ int main()
 	//
 	// 2. Приведенный ниже код должен выполняться корректно	
 	//
-#if 1
+#if 0
 	List ls2 = ls1;	
 	cout << ls2 << sep;
 	List ls3 = ls2;
@@ -88,7 +88,7 @@ int main()
 	//
 	// Замечание: считаем, что перемещенный объект оставляем в состоянии,
 	// которое позволяет его испльзовать.
-#if 1
+#if 0
 	List ls4 = std::move(ls2);
 	cout << ls4 << sep; 
 	cout << ls2 << sep; 
@@ -102,7 +102,7 @@ int main()
 	//
 	//4.  Сортировка по указанному критерию
 	//
-#if 1
+#if 0
 	cout << ls3 << sep;
 	ls3.Sort(AREA);			// сортируем фигуры по полщади
 	cout << ls3 << sep;

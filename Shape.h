@@ -6,7 +6,8 @@
 class Shape {
 public:
     
-    enum COLOR {BLACK, WHITE, RED, BLUE};
+    enum COLOR {BLACK, WHITE, RED, BLUE, GREEN};
+    const char* mass_color[5] = { "BLACK", "WHITE","RED", "BLUE", "GREEN"};
 
 protected:
     COLOR m_color; 

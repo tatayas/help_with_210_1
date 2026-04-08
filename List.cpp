@@ -58,7 +58,8 @@ void List::Sort(func_sravn srv) {
 std::ostream& operator<<(std::ostream& os, const List& l) {
     for (List::Node* current = l.Head.pNext; current != &l.Tail; current = current->pNext) {
         current->pData->print(os);
-        os << "\n";
+        std::cout << "----------------" << std::endl;
+        os << "\n";        
     }
     return os;
 }

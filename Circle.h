@@ -2,12 +2,14 @@
 
 #include "Shape.h"
 
+
+
 class Circle : public Shape {
     int m_x, m_y, m_r;
 
 public:
     Circle();
-    Circle(COLOR color, int x, int y, int r);
+    Circle(int x, int y, int r, COLOR color);
     ~Circle();
 
     virtual double area() const {
@@ -26,7 +28,7 @@ public:
     }
 
     virtual void print(std::ostream& os) const {
-        os << "Circle: \n color=" << m_color << "\n area=" << area()
+        os << "Circle: \n color=" << mass_color[m_color] << "\n area=" << area()
             << "\n cnt= (" << m_x << "," << m_y << ") \n rd=" << m_r << "\n";
     }
 

@@ -7,18 +7,18 @@ Circle::Circle() {
     m_y = 0; 
     m_r = 5;
     m_color = WHITE;
-    std::cout << "Constructor without parameters PC(circle)" << std::endl;
+    //std::cout << "Constructor without parameters PC(circle)" << std::endl;
 }
 
 //конструктор с параметрами
-Circle::Circle(COLOR color, int x, int y, int r) : Shape(color) {
+Circle::Circle(int x, int y, int r, COLOR color) : Shape(color) {
     m_x = x; m_y = y; m_r = r;
-    std::cout << "Constructor with parameters PC (circle)" << std::endl;
+    //std::cout << "Constructor with parameters PC (circle)" << std::endl;
 }
 
 //деструктор
 Circle::~Circle() {
-    std::cout << "Now I am in Circle's destructor" << std::endl;
+    //std::cout << "Now I am in Circle's destructor" << std::endl;
 }
 
 // чисто вирт.функция 

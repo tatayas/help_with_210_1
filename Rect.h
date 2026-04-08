@@ -7,7 +7,7 @@ class Rect : public Shape {
 
 public:
     Rect();
-    Rect(COLOR color, int left, int top, int right, int bottom);
+    Rect(int left, int top, int right, int bottom, COLOR color);
     Rect(const Rect& other);
     ~Rect();
 
@@ -31,7 +31,7 @@ public:
     }
 
     virtual void print(std::ostream& os) const {
-        os << "Rect: \n color=" << m_color << "\n area: " << area()
+        os << "Rect: \n color=" << mass_color[m_color] << "\n area: " << area()
             << "\n l=" << m_left << "\n t=" << m_top << "\n r=" << m_right << "\n b=" << m_bottom << "\n";
     }
 
