@@ -30,7 +30,7 @@
 
 const char* sep = "------------------------------------\n";
 
-enum SortType { AREA, COLOR /* .... */ };
+//enum SortType { AREA, COLOR};
 
 int main()
 {
@@ -43,14 +43,13 @@ int main()
 	// 	
 #if 1
 	List ls1;
-	
+
 	ls1.AddToTail(Circle(1, 1, 1, Shape::WHITE));	//добавляем элементы в список
 	ls1.AddToTail(Circle(5, 5, 5, Shape::RED));
 	ls1.AddToTail(Rect(2, 3, 4, 5, Shape::RED));
 	ls1.AddToTail(Rect(4, 6, 8, 10, Shape::GREEN));
 	ls1.AddToTail(Circle(2, 2, 2, Shape::WHITE));
 	ls1.AddToTail(Rect(3, 5, 6, 7, Shape::GREEN));
-	// just for PULL REQUEST
 	cout << ls1 << sep;								//выводим список	
 	stop
 
@@ -105,15 +104,15 @@ int main()
 	//
 #if 1
 	cout << ls3 << sep;
-	ls3.SortList(AREA);			// сортируем фигуры по полщади
+	ls3.Sort(AREA);			// сортируем фигуры по полщади
 	cout << ls3 << sep;
 	stop
 
-	ls3.SortList(COLOR);		// сортируем фигуры по цвету
+	ls3.Sort(COLOR);		// сортируем фигуры по цвету
 	cout << ls3 << sep;
 	stop
 #endif
-	//
+	/*
 	// 5*. Файловый ввод/вывод
 	//
 #if 1
@@ -134,6 +133,6 @@ int main()
 	// 6*. Дополнительные проверки
 	//
 	// ...
-
+	*/
 	return 0;
 }
