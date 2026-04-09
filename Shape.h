@@ -14,7 +14,7 @@ protected:
 
 public:
     // Конструкторы
-    Shape() : m_color(BLACK) {}
+    Shape() : m_color(Shape::BLACK) {}
     Shape(COLOR color) : m_color(color) {}
 
     //вирт.деструктор

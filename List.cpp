@@ -10,6 +10,41 @@ List::~List() {
     clean();
 }
 
+List::List(const List& other) :m_size(other.m_size)
+{
+
+    Head.pNext = &Tail;
+    Tail.pPrev = &Head;
+    Node* pThis = &Head;
+    Node* pOther = other.Head.pNext;
+    for (int i = 0; i < m_size; i++)
+    {
+        pThis = new Node(pThis, *(pOther->pData));
+        pOther = pOther->pNext;
+    }
+
+}
+
+List& List::operator=(const List& other)
+{
+    if (this != &other)
+    {
+        clean();
+        Head.pNext = &Tail;
+        Tail.pPrev = &Head;
+
+        Node* pOther = other.Head.pNext;
+        //for (int i = 0; i < m_size; i++)
+        while (pOther != &other.Tail)
+        {
+            this->AddToTail(*pOther->pData);
+           //std::cout << *this << std::endl;	 //отладочная печать
+            pOther = pOther->pNext;
+        }
+        return *this;
+    }
+}
+
 void List::clean() {
     while (Head.pNext != &Tail) {
         delete Head.pNext; 
