@@ -39,6 +39,11 @@ public:
     List(const List& other);
     List& operator=(const List& other);
 
+
+    //move semantics
+    List(List&& other);
+    List& operator=(List&& other);
+
     void AddToTail(const Shape& s);
     void AddToHead(const Shape& s);
 

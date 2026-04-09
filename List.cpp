@@ -45,6 +45,50 @@ List& List::operator=(const List& other)
     }
 }
 
+List::List(List&& other) :m_size(other.m_size)
+{
+
+    if ((other.m_size != 0) && (this!=&other))
+    {
+        Head.pNext = other.Head.pNext; //перекидываю указатели голов
+        Tail.pPrev = other.Tail.pPrev; //перекидываю указатели хвостов
+        Head.pNext->pPrev = &Head;
+        Tail.pPrev->pNext = &Tail;
+        m_size = other.m_size;
+        other.Head.pNext = &other.Tail;
+        other.Tail.pPrev = &other.Head;
+        other.clean();
+    }
+    else
+    {
+        Head.pNext = &Tail;
+        Tail.pPrev = &Head;
+    }
+}
+
+
+List& List::operator=(List&& other)
+{
+    if (this != &other)
+    {
+        clean();
+        if (other.m_size != 0)
+        {
+            Head.pNext = other.Head.pNext;
+            Tail.pPrev = other.Tail.pPrev;
+            Head.pNext->pPrev = &Head;
+            Tail.pPrev->pNext = &Tail;
+            m_size = other.m_size;
+            other.Head.pNext = &other.Tail;
+            other.Tail.pPrev = &other.Head;
+            other.m_size = 0;
+        }
+
+    }
+    return *this;
+
+}
+
 void List::clean() {
     while (Head.pNext != &Tail) {
         delete Head.pNext; 
