@@ -2,6 +2,8 @@
 
 #include "Shape.h"
 
+enum SortType { AREA, COLOR };
+
 class List {
 private:
     class Node {
@@ -12,7 +14,7 @@ private:
         Node* pNext;
         Shape* pData; 
 
-        Node() : pPrev(NULL), pNext(NULL), pData(NULL) {}
+        Node() : pPrev(nullptr), pNext(nullptr), pData(nullptr) {}
 
         Node(Node* p, const Shape& s) : pData(s.copy_()) {
             pPrev = p;
@@ -32,6 +34,10 @@ private:
     Node Tail;
     size_t m_size;
 
+    // Г±Г°Г ГўГ­ГҐГ­ГЁГҐ
+    bool srav_area(const Shape* first_sh, const Shape* second_sh);
+    bool srav_color(const Shape* first_sh, const Shape* second_sh);
+
 public:
     List();
     ~List();
@@ -50,10 +56,9 @@ public:
     bool Remove(const Shape& s);
     void clean();
 
-    // Сортировка по критерию (указатель на функцию)
-    typedef bool (*func_sravn)(const Shape*, const Shape*);
-    void Sort(func_sravn srv);
+    // Г‘Г®Г°ГІГЁГ°Г®ГўГЄГ  ГЇГ® ГЄГ°ГЁГІГҐГ°ГЁГѕ
+    void Sort(SortType type);
 
-    // Оператор вывода всего списка
+    // ГЋГЇГҐГ°Г ГІГ®Г° ГўГ»ГўГ®Г¤Г  ГўГ±ГҐГЈГ® Г±ГЇГЁГ±ГЄГ 
     friend std::ostream& operator<<(std::ostream& os, const List& l);
 };

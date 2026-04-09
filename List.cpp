@@ -10,6 +10,14 @@ List::~List() {
     clean();
 }
 
+void List::clean() {
+    while (Head.pNext != &Tail) {
+        delete Head.pNext;
+    }
+    m_size = 0;
+}
+
+//ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃªÃ®Ã¯Ã¨Ã°Ã®Ã¢Ã Ã­Ã¨Ã¿
 List::List(const List& other) :m_size(other.m_size)
 {
 
@@ -38,7 +46,7 @@ List& List::operator=(const List& other)
         while (pOther != &other.Tail)
         {
             this->AddToTail(*pOther->pData);
-           //std::cout << *this << std::endl;	 //îòëàäî÷íàÿ ïå÷àòü
+           //std::cout << *this << std::endl;	 //Ã®Ã²Ã«Ã Ã¤Ã®Ã·Ã­Ã Ã¿ Ã¯Ã¥Ã·Ã Ã²Ã¼
             pOther = pOther->pNext;
         }
         return *this;
@@ -50,8 +58,8 @@ List::List(List&& other) :m_size(other.m_size)
 
     if ((other.m_size != 0) && (this!=&other))
     {
-        Head.pNext = other.Head.pNext; //ïåðåêèäûâàþ óêàçàòåëè ãîëîâ
-        Tail.pPrev = other.Tail.pPrev; //ïåðåêèäûâàþ óêàçàòåëè õâîñòîâ
+        Head.pNext = other.Head.pNext; //Ã¯Ã¥Ã°Ã¥ÃªÃ¨Ã¤Ã»Ã¢Ã Ã¾ Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¨ Ã£Ã®Ã«Ã®Ã¢
+        Tail.pPrev = other.Tail.pPrev; //Ã¯Ã¥Ã°Ã¥ÃªÃ¨Ã¤Ã»Ã¢Ã Ã¾ Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¨ ÃµÃ¢Ã®Ã±Ã²Ã®Ã¢
         Head.pNext->pPrev = &Head;
         Tail.pPrev->pNext = &Tail;
         m_size = other.m_size;
@@ -89,12 +97,7 @@ List& List::operator=(List&& other)
 
 }
 
-void List::clean() {
-    while (Head.pNext != &Tail) {
-        delete Head.pNext; 
-    }
-    m_size = 0;
-}
+
 
 void List::AddToTail(const Shape& s) {
     new Node(Tail.pPrev, s); 
@@ -117,6 +120,7 @@ bool List::Remove(const Shape& s) {
     return false;
 }
 
+/*
 void List::Sort(func_sravn srv) {
     if (m_size < 2) return;
     bool swap;
@@ -132,13 +136,49 @@ void List::Sort(func_sravn srv) {
         }
     } while (swap);
 }
+*/
 
-// Âûâîä ñïèñêà â ñòîëáèê
+// ÃÃ¥Ã Ã«Ã¨Ã§Ã Ã¶Ã¨Ã¿ Ã±Ã°Ã Ã¢Ã­Ã¥Ã­Ã¨Ã¿
+
+bool List::srav_area(const Shape* first_sh, const Shape* second_sh) {
+    return first_sh->area() > second_sh->area();
+}
+
+bool List::srav_color(const Shape* first_sh, const Shape* second_sh) {
+    return first_sh->Color_get() > second_sh->Color_get();
+}
+
+void List::Sort(SortType type) {
+    if (m_size < 2) return;
+
+    bool (List::*pSRAV)(const Shape*, const Shape*) = nullptr;
+
+    if (type == AREA) pSRAV = &List::srav_area;
+    else if (type == COLOR) pSRAV = &List::srav_color;
+
+    if (pSRAV == nullptr) return;
+
+    bool swap;
+    do {
+        swap = false;
+        for (Node* current = Head.pNext; current->pNext != &Tail; current = current->pNext) {
+            if ((this->*pSRAV)(current->pData, current->pNext->pData)) {
+                // ÃŒÃ¥Ã­Ã¿Ã¥Ã¬ Ã¬Ã¥Ã±Ã²Ã Ã¬Ã¨ Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¨ Ã­Ã  Ã¤Ã Ã­Ã­Ã»Ã¥
+                Shape* tmp = current->pData;
+                current->pData = current->pNext->pData;
+                current->pNext->pData = tmp;
+                swap = true;
+            }
+        }
+    } while (swap);
+}
+
+// Ã‚Ã»Ã¢Ã®Ã¤ Ã±Ã¯Ã¨Ã±ÃªÃ  Ã¢ Ã±Ã²Ã®Ã«Ã¡Ã¨Ãª
 std::ostream& operator<<(std::ostream& os, const List& l) {
     for (List::Node* current = l.Head.pNext; current != &l.Tail; current = current->pNext) {
         current->pData->print(os);
-        std::cout << "----------------" << std::endl;
-        os << "\n";        
+        //std::cout << "----------------" << std::endl;
+        //os << "\n";        
     }
     return os;
 }

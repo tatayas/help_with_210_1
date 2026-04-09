@@ -21,9 +21,11 @@ public:
         return new Rect(*this);
     }
 
-    // вирт.оператор ==
+    // ГўГЁГ°ГІ.Г®ГЇГҐГ°Г ГІГ®Г° ==
     virtual bool operator==(const Shape& other) const {
         if (!Shape::operator==(other)) 
+            return false;
+        if (typeid(*this) != typeid(other))
             return false;
         const Rect& r = static_cast<const Rect&>(other);
         return m_left == r.m_left && m_top == r.m_top &&
@@ -31,8 +33,8 @@ public:
     }
 
     virtual void print(std::ostream& os) const {
-        os << "Rect: \n color=" << mass_color[m_color] << "\n area: " << area()
-            << "\n l=" << m_left << "\n t=" << m_top << "\n r=" << m_right << "\n b=" << m_bottom << "\n";
+        os << "Rect:color= " << mass_color[m_color] << " area: " << area()
+            << " l=" << m_left << " t=" << m_top << " r=" << m_right << " b=" << m_bottom << "\n";
     }
 
     virtual void Inflate(int delta_hor);

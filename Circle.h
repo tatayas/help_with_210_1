@@ -23,13 +23,15 @@ public:
     virtual bool operator==(const Shape& other) const {
         if (!Shape::operator==(other)) 
             return false;
+        if (typeid(*this) != typeid(other))
+            return false;
         const Circle& c = static_cast<const Circle&>(other);
         return m_x == c.m_x && m_y == c.m_y && m_r == c.m_r;
     }
 
     virtual void print(std::ostream& os) const {
-        os << "Circle: \n color=" << mass_color[m_color] << "\n area=" << area()
-            << "\n cnt= (" << m_x << "," << m_y << ") \n rd=" << m_r << "\n";
+        os << "Circle:  color=" << mass_color[m_color] << " area=" << area()
+            << " cnt= (" << m_x << "," << m_y << ")  rd=" << m_r << "\n";
     }
 
     virtual void Inflate(int delta_rad);
