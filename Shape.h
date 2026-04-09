@@ -13,14 +13,14 @@ protected:
     COLOR m_color; 
 
 public:
-    // Конструкторы
+    // ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г»
     Shape() : m_color(Shape::BLACK) {}
     Shape(COLOR color) : m_color(color) {}
 
-    //вирт.деструктор
+    //ГўГЁГ°ГІ.Г¤ГҐГ±ГІГ°ГіГЄГІГ®Г°
     virtual ~Shape() {}
 
-    //чисто вирт.функции 
+    //Г·ГЁГ±ГІГ® ГўГЁГ°ГІ.ГґГіГ­ГЄГ¶ГЁГЁ 
     virtual double area() const = 0;   
     virtual Shape* copy_() const = 0; 
     virtual void print(std::ostream& os) const = 0; 
@@ -29,7 +29,7 @@ public:
     COLOR Color_get() const 
         { return m_color; }
 
-    // Вирт. оператор == 
+    // Г‚ГЁГ°ГІ. Г®ГЇГҐГ°Г ГІГ®Г° == 
     virtual bool operator==(const Shape& other) const {
         //if (typeid(*this) != typeid(other)) return false;
         return m_color == other.m_color;

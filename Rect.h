@@ -21,7 +21,7 @@ public:
         return new Rect(*this);
     }
 
-    // вирт.оператор ==
+    // ГўГЁГ°ГІ.Г®ГЇГҐГ°Г ГІГ®Г° ==
     virtual bool operator==(const Shape& other) const {
         if (!Shape::operator==(other)) 
             return false;
